@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../coauthor-notebook/inked/src"
+		},
+		{
+			"path": "../../coauthor-notebook/inked/node_modules"
+		}
+	],
+	"settings": {}
+}
