@@ -7,3 +7,4 @@ dist
 *.log
 dist-ssr
 .env*
+node_modules/

@@ -1,0 +1,94 @@
+
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "A user of the application.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The user's unique ID."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "The URL of the user's profile picture."
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "project": {
+      "title": "Project",
+      "description": "A user's project, containing documents and notes.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the project."
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "The UID of the user who owns the project."
+        }
+      },
+      "required": ["name", "ownerId"]
+    },
+    "document": {
+      "title": "Document",
+      "description": "A single document or chapter within a project.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the document."
+        },
+        "content": {
+          "type": "string",
+          "description": "The main text content of the document."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the document was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the document was last updated."
+        }
+      },
+      "required": ["title", "content"]
+    }
+  },
+  "auth": {
+    "providers": ["Google"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/user"
+      },
+      "description": "Stores user profile information."
+    },
+    "/users/{userId}/projects/{projectId}": {
+      "schema": {
+        "$ref": "#/entities/project"
+      },
+      "description": "Stores projects for each user."
+    },
+    "/projects/{projectId}/documents/{documentId}": {
+      "schema": {
+        "$ref": "#/entities/document"
+      },
+      "description": "Stores the documents for a specific project."
+    }
+  }
+}
